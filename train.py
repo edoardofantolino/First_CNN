@@ -63,5 +63,5 @@ optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 train(net, 7)
 PATH = './cifar_net.pth'
-torch.save(net.state_dict(), PATH)
+torch.save(net.state_dict(), PATH) # this command is used to save the values of the network in "PATH"
 
