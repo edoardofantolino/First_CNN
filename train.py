@@ -3,9 +3,10 @@ import torchvision
 import torchvision.transforms as transforms
 import torch.optim as optim
 from architecture.model import Net
+import torch.nn as nn
+import torch.nn.functional as F
 
 def train(net):
-    net = Net()
 
     transform = transforms.Compose(
         [transforms.ToTensor(),
@@ -29,7 +30,7 @@ def train(net):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
-    for epoch in range(2):  # loop over the dataset multiple times
+    for epoch in range(1):  # loop over the dataset multiple times
 
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
@@ -53,3 +54,10 @@ def train(net):
                 running_loss = 0.0
 
     print('Finished Training')
+
+
+net = Net()
+train(net)
+PATH = './cifar_net.pth'
+torch.save(net.state_dict(), PATH)
+
