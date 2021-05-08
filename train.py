@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 def train(net, num_epoch):
-    for epoch in range(1):  # loop over the dataset multiple times
+    for epoch in range(num_epoch):  # loop over the dataset multiple times
 
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
