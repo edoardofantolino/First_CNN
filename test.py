@@ -30,31 +30,38 @@ img = Image.open("/content/firstCNN/images/frogo.jpg")
 img = img.resize((32,32))
 
 plt.imshow(img)
+plt.title("The image")
 plt.show()
 
 img = transform(img)
 img = img.unsqueeze(0)
 # print(img.shape)
 # print(img)
+print()
 
 net.eval()
 output = net(img)
-print(output)
+# print(output)
 # print(output.shape)
 
 x = np.array([0,1,2,3,4,5,6,7,8,9])
 plt.bar(x, output[0].detach())
+plt.title("Output of the model")
 plt.xticks(range(len(lista)), lista)
 plt.grid()
 plt.show()
+
+print()
 
 softmax = nn.Softmax(dim=1)
 output = softmax(output)
 plt.bar(x, output[0].detach())
+plt.title("Softmax(output)")
 plt.xticks(range(len(lista)), lista)
 plt.grid()
 plt.show()
 
+print()
 
 
 
