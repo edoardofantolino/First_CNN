@@ -21,7 +21,9 @@ net = Net()
 m_state_dict = torch.load('/content/firstCNN/cifar_net.pth')
 net.load_state_dict(m_state_dict)
 
-img = Image.open("/content/firstCNN/cano.jpg")
+img = Image.open("/content/firstCNN/images/cano.jpg")
+img = Image.open("/content/firstCNN/images/caro.jpg")
+img = Image.open("/content/firstCNN/images/frogo.jpg")
 img = img.resize((32,32))
 
 plt.imshow(img)
