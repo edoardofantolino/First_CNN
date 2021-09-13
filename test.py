@@ -10,8 +10,7 @@ import matplotlib.pyplot as plt
 
 
 transform = transforms.Compose([
-        transforms.RandomResizedCrop(32, (0.5, 2.0)),
-        transforms.RandomHorizontalFlip(), 
+        transforms.CenterCrop(32),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406],
                   std=[0.229, 0.224, 0.225]),
