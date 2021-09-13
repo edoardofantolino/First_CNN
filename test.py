@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from PIL import Image
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 transform = transforms.Compose([
@@ -15,6 +16,9 @@ transform = transforms.Compose([
         transforms.Normalize(mean=[0.485, 0.456, 0.406],
                   std=[0.229, 0.224, 0.225]),
     ])
+
+lista = ['airplane', 'car', 'bird', 'cat', 'deer',
+         'dog', 'frog', 'horse', 'ship', 'truck']
 
 net = Net()
 m_state_dict = torch.load('/content/firstCNN/cifar_net.pth')
@@ -28,17 +32,28 @@ img = img.resize((32,32))
 plt.imshow(img)
 plt.show()
 
-
 img = transform(img)
 img = img.unsqueeze(0)
-print(img.shape)
-print(img)
+# print(img.shape)
+# print(img)
 
 net.eval()
 output = net(img)
 print(output)
-print(output.shape)
+# print(output.shape)
 
+x = np.array([0,1,2,3,4,5,6,7,8,9])
+plt.bar(x, output[0].detach())
+plt.xticks(range(len(lista)), lista)
+plt.grid()
+plt.show()
+
+softmax = nn.Softmax(dim=1)
+output = softmax(output)
+plt.bar(x, output[0].detach())
+plt.xticks(range(len(lista)), lista)
+plt.grid()
+plt.show()
 
 
 
